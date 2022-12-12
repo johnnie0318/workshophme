@@ -1,0 +1,36 @@
+scalar DateTime
+
+type Shop {
+  id: Int!
+  createdAt: DateTime
+  title: String!
+  imageUrl: String!
+  link: String!
+  price: Int!
+}
+
+input CreateShopInput {
+  title: String!
+  imageUrl: String!
+  link: String!
+  price: Int!
+}
+
+input UpdateShopInput {
+  id: Int!
+  title: String!
+  imageUrl: String!
+  link: String!
+  price: Int!
+}
+
+type Query {
+  shops: [Shop]!
+  shop(id: Int!): Shop
+}
+
+type Mutation {
+  createShop(createShopInput: CreateShopInput!): Shop!
+  updateShop(updateShopInput: UpdateShopInput!): Shop!
+  removeShop(id: Int!): Shop
+}

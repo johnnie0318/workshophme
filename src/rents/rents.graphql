@@ -1,0 +1,75 @@
+scalar DateTime
+
+type Rent {
+  id: Int!
+  createdAt: DateTime
+  tools: String!
+  rentName: String!
+  rentNim: String!
+  rentPhone: String!
+  rentLineId: String!
+  organisation: String!
+  fromDate: DateTime!
+  expectedReturnDate: DateTime!
+  status: String!
+  totalPrice: Int
+  fine: Int
+  pickupName: String
+  pickupNim: String
+  returnName: String
+  returnNim: String
+  returnDate: DateTime
+}
+
+type RentDate {
+  id: Int!
+  createdAt: DateTime
+  tools: String!
+  fromDate: DateTime!
+  expectedReturnDate: DateTime!
+  status: String!
+}
+
+input CreateRentInput {
+  tools: String!
+  rentName: String!
+  rentNim: String!
+  rentPhone: String!
+  rentLineId: String!
+  organisation: String!
+  fromDate: DateTime!
+  expectedReturnDate: DateTime!
+  status: String!
+  totalPrice: Int!
+}
+
+input UpdateRentInput {
+  id: Int!
+  rentName: String!
+  rentNim: String!
+  rentPhone: String!
+  rentLineId: String!
+  organisation: String!
+  fromDate: DateTime!
+  expectedReturnDate: DateTime!
+  status: String!
+  totalPrice: Int
+  fine: Int
+  pickupName: String
+  pickupNim: String
+  returnName: String
+  returnNim: String
+  returnDate: DateTime
+}
+
+type Query {
+  rents: [Rent]!
+  rentdates: [RentDate]!
+  rent(id: Int!): Rent
+}
+
+type Mutation {
+  createRent(createRentInput: CreateRentInput!): Rent!
+  updateRent(updateRentInput: UpdateRentInput!): Rent!
+  removeRent(id: Int!): Rent
+}

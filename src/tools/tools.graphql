@@ -1,0 +1,40 @@
+type Tool {
+  id: Int!
+  createdAt: DateTime
+  name: String!
+  image: String!
+  activated: Boolean!
+  totalStock: Int!
+  priceHour: Int!
+  priceDay: Int!
+}
+
+input CreateToolInput {
+  name: String!
+  image: String!
+  activated: Boolean!
+  totalStock: Int!
+  priceHour: Int!
+  priceDay: Int!
+}
+
+input UpdateToolInput {
+  id: Int!
+  name: String!
+  image: String!
+  activated: Boolean!
+  totalStock: Int!
+  priceHour: Int!
+  priceDay: Int!
+}
+
+type Query {
+  tools: [Tool]!
+  tool(id: Int!): Tool
+}
+
+type Mutation {
+  createTool(createToolInput: CreateToolInput!): Tool!
+  updateTool(updateToolInput: UpdateToolInput!): Tool!
+  removeTool(id: Int!): Tool
+}

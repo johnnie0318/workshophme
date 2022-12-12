@@ -1,0 +1,74 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Admin {
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  email     String   @unique
+  name      String
+  password  String
+}
+
+// Admin create one to many relationship with model rent
+// status = {waiting_pickup, waiting_return, finished, dropped}
+model Rent {
+  id                 Int       @id @default(autoincrement())
+  createdAt          DateTime  @default(now())
+  tools              String // Containing Tools id used and quantity
+  rentName           String
+  rentNim            String
+  rentPhone          String
+  rentLineId         String
+  organisation       String
+  fromDate           DateTime
+  expectedReturnDate DateTime
+  status             String    @default("waiting_pickup")
+  totalPrice         Int       @default(0)
+  fine               Int?
+  pickupName         String?
+  pickupNim          String?
+  returnName         String?
+  returnNim          String?
+  returnDate         DateTime?
+}
+
+model Tool {
+  id         Int      @id @default(autoincrement())
+  createdAt  DateTime @default(now())
+  /// @Validator.MinLength(3)
+  name       String
+  image      String
+  activated  Boolean  @default(true) // True if active(used), False if deleted by used 
+  totalStock Int
+  priceHour  Int
+  priceDay   Int
+}
+
+model Article {
+  id            Int      @id @default(autoincrement())
+  createdAt     DateTime @default(now())
+  title         String
+  desc          String
+  imageUrl      String
+  publishedDate DateTime @default(now())
+  duration      Int
+  link          String
+}
+
+model Shop {
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  title     String
+  imageUrl  String
+  link      String
+  price     Int
+}

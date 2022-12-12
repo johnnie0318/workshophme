@@ -3,12 +3,6 @@
 Workshop is a division under the Himpunan Mahasiswa Elektro ITB (HME ITB) which focuses on practical electronics including tool renting, electronic component shop, project freelance, and research in the IT and electronics fields.
 <br />
 
-## Development Status
-
-This project is currently in active development, to view the current state of the website :
-<br />
-https://workshophme.com
-
 ## Tech Stacks
 
 ### Front End
